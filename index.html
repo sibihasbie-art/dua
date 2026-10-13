@@ -49,16 +49,15 @@
         const card2 = document.getElementById('card-lokasi2');
 
         client.on('connect', function () {
-            console.log('Terhubung ke Broker HiveMQ');
-            // Berlangganan (subscribe) ke topik ESP32 1 dan 2
-            client.subscribe('hasbi/iot/getar/lokasi1', function (err) {
-                if (!err) status1.innerText = "Menunggu data...";
-            });
-            client.subscribe('hasbi/iot/getar/lokasi2', function (err) {
-                if (!err) status2.innerText = "Menunggu data...";
-            });
-        });
-
+    console.log('Terhubung ke Broker HiveMQ');
+    // Pastikan nama topik ini sama persis dengan yang ada di program ESP32 1 dan 2 Anda
+    client.subscribe('hasbi/iot/getar/lokasi1', function (err) {
+        if (!err) status1.innerText = "Menunggu data...";
+    });
+    client.subscribe('hasbi/iot/getar/lokasi2', function (err) {
+        if (!err) status2.innerText = "Menunggu data...";
+    });
+});
         // Aksi ketika data baru masuk dari ESP32
         client.on('message', function (topic, message) {
             let msg = message.toString();
